@@ -26,13 +26,13 @@ class Ball extends StatefulWidget {
   _BallState createState() => _BallState();
 }
 
+var balls = 1;
+void updateBall() {
+  balls = Random().nextInt(5) + 1;
+}
+
 class _BallState extends State<Ball> {
   @override
-  var Ball = 1;
-  void updateBall() {
-    Ball = Random().nextInt(5) + 1;
-  }
-
   Widget build(BuildContext context) {
     return Center(
       child: SafeArea(
@@ -41,9 +41,11 @@ class _BallState extends State<Ball> {
             Expanded(
               child: TextButton(
                 onPressed: () {
-                  updateBall();
+                  setState(() {
+                    updateBall();
+                  });
                 },
-                child: Image.asset('images/ball$Ball.png'),
+                child: Image.asset('images/ball$balls.png'),
               ),
             )
           ],
